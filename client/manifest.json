@@ -1,0 +1,31 @@
+{
+  "version": "0.2",
+  "name": "Facebook Emotion Bot",
+  "short_name": "Emotion Bot",
+  "manifest_version": 2,
+  "description": "Help you make sense of those foreign posts on Facebook by visualizing emotion analyses",
+  "browser_action": {
+    "default_icon": "./assets/images/icon.png",
+    "default_title": "Facebook posts analysis",
+    "default_popup": "./assets/views/popup.html"
+  },
+  "permissions": [
+    "<all_urls>",
+    "tabs",
+    "storage",
+    "contextMenus"
+  ],
+
+  "web_accessible_resources": [
+    "assets/images/*.png"
+  ],
+
+  "content_scripts":[
+    {
+      "matches": ["https://*.facebook.com/*"],
+      "js":["./assets/scripts/jquery-3.1.1.min.js","index.js", "./assets/scripts/d3.min.js", "./assets/scripts/gauge.min.js"],
+      "css": [ "./assets/views/style.css" ],
+      "run_at": "document_end"
+    }
+  ]
+}
